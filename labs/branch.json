@@ -1,0 +1,159 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {},
+    "items": [
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "build.openshift.io/v1",
+            "metadata": {
+                "name": "branch",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "branch",
+                    "app.kubernetes.io/component": "branch",
+                    "app.kubernetes.io/instance": "branch"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "TKRGahwqM-90qrboi0JO"
+                        }
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "Qhfa74rsppWAZuZuNBEn"
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    }
+                ],
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/openshift/ruby-hello-world.git",
+                        "ref": "beta4"
+                    }
+                },
+                "strategy": {
+                    "type": "Docker",
+                    "dockerStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "name": "ruby-22-centos7:latest"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "branch:latest"
+                    }
+                },
+                "resources": {},
+                "postCommit": {},
+                "nodeSelector": null
+            },
+            "status": {
+                "lastVersion": 0
+            }
+        },
+        {
+            "kind": "Deployment",
+            "apiVersion": "apps/v1",
+            "metadata": {
+                "name": "branch",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "branch",
+                    "app.kubernetes.io/component": "branch",
+                    "app.kubernetes.io/instance": "branch"
+                },
+                "annotations": {
+                    "image.openshift.io/triggers": "[{\"from\":{\"kind\":\"ImageStreamTag\",\"name\":\"branch:latest\"},\"fieldPath\":\"spec.template.spec.containers[?(@.name==\\\"branch\\\")].image\"}]",
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                }
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "matchLabels": {
+                        "deployment": "branch"
+                    }
+                },
+                "template": {
+                    "metadata": {
+                        "creationTimestamp": null,
+                        "labels": {
+                            "deployment": "branch"
+                        },
+                        "annotations": {
+                            "openshift.io/generated-by": "OpenShiftNewApp"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "branch",
+                                "image": " ",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "resources": {}
+                            }
+                        ]
+                    }
+                },
+                "strategy": {}
+            },
+            "status": {}
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "branch",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "branch",
+                    "app.kubernetes.io/component": "branch",
+                    "app.kubernetes.io/instance": "branch"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "OpenShiftNewApp"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "8080-tcp",
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "deployment": "branch"
+                }
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        }
+    ]
+}

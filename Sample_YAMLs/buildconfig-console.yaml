@@ -1,0 +1,117 @@
+﻿kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: console
+  namespace: sandeepv-sg-console
+  selfLink: >-
+    /apis/build.openshift.io/v1/namespaces/sandeepv-sg-console/buildconfigs/console
+  uid: 6b4b3e68-7a76-4ba1-9dcd-00ecb357f7e2
+  resourceVersion: '2716896'
+  creationTimestamp: '2020-11-08T11:09:34Z'
+  labels:
+    app: console
+    app.kubernetes.io/component: console
+    app.kubernetes.io/instance: console
+    app.kubernetes.io/name: php
+    app.kubernetes.io/part-of: php-helloworld
+    app.openshift.io/runtime: php
+    app.openshift.io/runtime-version: '7.3'
+  annotations:
+    app.openshift.io/vcs-ref: console
+    app.openshift.io/vcs-uri: 'https://github.com/sandeepved/DO180-apps.git'
+    openshift.io/generated-by: OpenShiftWebConsole
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: build.openshift.io/v1
+      time: '2020-11-08T11:09:34Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:app.openshift.io/vcs-ref': {}
+            'f:app.openshift.io/vcs-uri': {}
+            'f:openshift.io/generated-by': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:app.kubernetes.io/component': {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/name': {}
+            'f:app.kubernetes.io/part-of': {}
+            'f:app.openshift.io/runtime': {}
+            'f:app.openshift.io/runtime-version': {}
+        'f:spec':
+          'f:output':
+            'f:to':
+              .: {}
+              'f:kind': {}
+              'f:name': {}
+          'f:runPolicy': {}
+          'f:source':
+            'f:contextDir': {}
+            'f:git':
+              .: {}
+              'f:ref': {}
+              'f:uri': {}
+            'f:type': {}
+          'f:strategy':
+            'f:sourceStrategy':
+              .: {}
+              'f:from':
+                .: {}
+                'f:kind': {}
+                'f:name': {}
+                'f:namespace': {}
+            'f:type': {}
+    - manager: openshift-apiserver
+      operation: Update
+      apiVersion: build.openshift.io/v1
+      time: '2020-11-08T11:09:34Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:triggers': {}
+        'f:status':
+          'f:lastVersion': {}
+spec:
+  triggers:
+    - type: Generic
+      generic:
+        secretReference:
+          name: console-generic-webhook-secret
+    - type: GitHub
+      github:
+        secretReference:
+          name: console-github-webhook-secret
+    - type: ImageChange
+      imageChange:
+        lastTriggeredImageID: >-
+          image-registry.openshift-image-registry.svc:5000/openshift/php@sha256:9bb7d5af155a162865ed10e33ea194f966b94974ce4cd6476f5fc26e5d2d8ff8
+    - type: ConfigChange
+  runPolicy: Serial
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/sandeepved/DO180-apps.git'
+      ref: console
+    contextDir: php-helloworld
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        namespace: openshift
+        name: 'php:7.3'
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'console:latest'
+  resources: {}
+  postCommit: {}
+  nodeSelector: null
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+status:
+  lastVersion: 1

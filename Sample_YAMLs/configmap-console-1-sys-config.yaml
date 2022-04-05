@@ -1,0 +1,30 @@
+﻿kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: console-1-sys-config
+  namespace: sandeepv-sg-console
+  selfLink: /api/v1/namespaces/sandeepv-sg-console/configmaps/console-1-sys-config
+  uid: 02a812a9-b192-4642-8091-473d1fc790a9
+  resourceVersion: '2716904'
+  creationTimestamp: '2020-11-08T11:09:35Z'
+  ownerReferences:
+    - apiVersion: v1
+      kind: Pod
+      name: console-1-build
+      uid: a1c7d56a-6f81-4c12-a64f-3502aef361dc
+  managedFields:
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2020-11-08T11:09:35Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:ownerReferences':
+            .: {}
+            'k:{"uid":"a1c7d56a-6f81-4c12-a64f-3502aef361dc"}':
+              .: {}
+              'f:apiVersion': {}
+              'f:kind': {}
+              'f:name': {}
+              'f:uid': {}

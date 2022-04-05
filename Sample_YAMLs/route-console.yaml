@@ -1,0 +1,72 @@
+﻿kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    openshift.io/host.generated: 'true'
+  selfLink: /apis/route.openshift.io/v1/namespaces/sandeepv-sg-console/routes/console
+  resourceVersion: '2716894'
+  name: console
+  uid: cc2c6373-1e1f-4f3d-80f7-402c64d675dd
+  creationTimestamp: '2020-11-08T11:09:34Z'
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      time: '2020-11-08T11:09:34Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:app.kubernetes.io/component': {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/name': {}
+            'f:app.kubernetes.io/part-of': {}
+            'f:app.openshift.io/runtime': {}
+            'f:app.openshift.io/runtime-version': {}
+        'f:spec':
+          'f:port':
+            .: {}
+            'f:targetPort': {}
+          'f:to':
+            'f:kind': {}
+            'f:name': {}
+            'f:weight': {}
+          'f:wildcardPolicy': {}
+    - manager: openshift-router
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      time: '2020-11-08T11:09:34Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:ingress': {}
+  namespace: sandeepv-sg-console
+  labels:
+    app: console
+    app.kubernetes.io/component: console
+    app.kubernetes.io/instance: console
+    app.kubernetes.io/name: php
+    app.kubernetes.io/part-of: php-helloworld
+    app.openshift.io/runtime: php
+    app.openshift.io/runtime-version: '7.3'
+spec:
+  host: console-sandeepv-sg-console.apps.ap45.prod.nextcle.com
+  to:
+    kind: Service
+    name: console
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  wildcardPolicy: None
+status:
+  ingress:
+    - host: console-sandeepv-sg-console.apps.ap45.prod.nextcle.com
+      routerName: default
+      conditions:
+        - type: Admitted
+          status: 'True'
+          lastTransitionTime: '2020-11-08T11:09:34Z'
+      wildcardPolicy: None
+      routerCanonicalHostname: apps.ap45.prod.nextcle.com

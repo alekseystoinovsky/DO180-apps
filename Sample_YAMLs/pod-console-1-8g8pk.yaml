@@ -1,0 +1,253 @@
+﻿kind: Pod
+apiVersion: v1
+metadata:
+  generateName: console-1-
+  annotations:
+    k8s.v1.cni.cncf.io/network-status: |-
+      [{
+          "name": "openshift-sdn",
+          "interface": "eth0",
+          "ips": [
+              "10.129.3.199"
+          ],
+          "default": true,
+          "dns": {}
+      }]
+    k8s.v1.cni.cncf.io/networks-status: |-
+      [{
+          "name": "openshift-sdn",
+          "interface": "eth0",
+          "ips": [
+              "10.129.3.199"
+          ],
+          "default": true,
+          "dns": {}
+      }]
+    kubernetes.io/limit-ranger: >-
+      LimitRanger plugin set: cpu, memory request for container console; cpu,
+      memory limit for container console
+    openshift.io/deployment-config.latest-version: '1'
+    openshift.io/deployment-config.name: console
+    openshift.io/deployment.name: console-1
+    openshift.io/scc: restricted
+  selfLink: /api/v1/namespaces/sandeepv-sg-console/pods/console-1-8g8pk
+  resourceVersion: '2717191'
+  name: console-1-8g8pk
+  uid: 55215f91-0a6a-4a4d-b7fe-3a6a18180a29
+  creationTimestamp: '2020-11-08T11:10:14Z'
+  managedFields:
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2020-11-08T11:10:14Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:openshift.io/deployment-config.latest-version': {}
+            'f:openshift.io/deployment-config.name': {}
+            'f:openshift.io/deployment.name': {}
+          'f:generateName': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:deployment': {}
+            'f:deploymentconfig': {}
+          'f:ownerReferences':
+            .: {}
+            'k:{"uid":"171f1565-3c2b-4604-a490-e52241be08f0"}':
+              .: {}
+              'f:apiVersion': {}
+              'f:blockOwnerDeletion': {}
+              'f:controller': {}
+              'f:kind': {}
+              'f:name': {}
+              'f:uid': {}
+        'f:spec':
+          'f:containers':
+            'k:{"name":"console"}':
+              .: {}
+              'f:image': {}
+              'f:imagePullPolicy': {}
+              'f:name': {}
+              'f:ports':
+                .: {}
+                'k:{"containerPort":8080,"protocol":"TCP"}':
+                  .: {}
+                  'f:containerPort': {}
+                  'f:protocol': {}
+                'k:{"containerPort":8443,"protocol":"TCP"}':
+                  .: {}
+                  'f:containerPort': {}
+                  'f:protocol': {}
+              'f:resources': {}
+              'f:terminationMessagePath': {}
+              'f:terminationMessagePolicy': {}
+          'f:dnsPolicy': {}
+          'f:enableServiceLinks': {}
+          'f:restartPolicy': {}
+          'f:schedulerName': {}
+          'f:securityContext': {}
+          'f:terminationGracePeriodSeconds': {}
+    - manager: multus
+      operation: Update
+      apiVersion: v1
+      time: '2020-11-08T11:10:16Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:k8s.v1.cni.cncf.io/network-status': {}
+            'f:k8s.v1.cni.cncf.io/networks-status': {}
+    - manager: kubelet
+      operation: Update
+      apiVersion: v1
+      time: '2020-11-08T11:10:17Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:conditions':
+            'k:{"type":"ContainersReady"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Initialized"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Ready"}':
+              .: {}
+              'f:lastProbeTime': {}
+              'f:lastTransitionTime': {}
+              'f:status': {}
+              'f:type': {}
+          'f:containerStatuses': {}
+          'f:hostIP': {}
+          'f:phase': {}
+          'f:podIP': {}
+          'f:podIPs':
+            .: {}
+            'k:{"ip":"10.129.3.199"}':
+              .: {}
+              'f:ip': {}
+          'f:startTime': {}
+  namespace: sandeepv-sg-console
+  ownerReferences:
+    - apiVersion: v1
+      kind: ReplicationController
+      name: console-1
+      uid: 171f1565-3c2b-4604-a490-e52241be08f0
+      controller: true
+      blockOwnerDeletion: true
+  labels:
+    app: console
+    deployment: console-1
+    deploymentconfig: console
+spec:
+  restartPolicy: Always
+  serviceAccountName: default
+  imagePullSecrets:
+    - name: default-dockercfg-rjwwb
+  priority: 0
+  schedulerName: default-scheduler
+  enableServiceLinks: true
+  terminationGracePeriodSeconds: 30
+  nodeName: ap45-58gtm-worker-rrmsm
+  securityContext:
+    seLinuxOptions:
+      level: 's0:c26,c20'
+    fsGroup: 1000690000
+  containers:
+    - resources:
+        limits:
+          cpu: 1500m
+          memory: 2Gi
+        requests:
+          cpu: 50m
+          memory: 256Mi
+      terminationMessagePath: /dev/termination-log
+      name: console
+      securityContext:
+        capabilities:
+          drop:
+            - KILL
+            - MKNOD
+            - SETGID
+            - SETUID
+        runAsUser: 1000690000
+      ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+      imagePullPolicy: Always
+      volumeMounts:
+        - name: default-token-kcm76
+          readOnly: true
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      terminationMessagePolicy: File
+      image: >-
+        image-registry.openshift-image-registry.svc:5000/sandeepv-sg-console/console@sha256:6105f16d16901e1ba5c88d1cb1d06aca574a79308eab27eb47a617e620e719b7
+  serviceAccount: default
+  volumes:
+    - name: default-token-kcm76
+      secret:
+        secretName: default-token-kcm76
+        defaultMode: 420
+  dnsPolicy: ClusterFirst
+  tolerations:
+    - key: node.kubernetes.io/not-ready
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
+    - key: node.kubernetes.io/unreachable
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
+    - key: node.kubernetes.io/memory-pressure
+      operator: Exists
+      effect: NoSchedule
+status:
+  phase: Running
+  conditions:
+    - type: Initialized
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2020-11-08T11:10:14Z'
+    - type: Ready
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2020-11-08T11:10:17Z'
+    - type: ContainersReady
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2020-11-08T11:10:17Z'
+    - type: PodScheduled
+      status: 'True'
+      lastProbeTime: null
+      lastTransitionTime: '2020-11-08T11:10:14Z'
+  hostIP: 10.0.2.35
+  podIP: 10.129.3.199
+  podIPs:
+    - ip: 10.129.3.199
+  startTime: '2020-11-08T11:10:14Z'
+  containerStatuses:
+    - restartCount: 0
+      started: true
+      ready: true
+      name: console
+      state:
+        running:
+          startedAt: '2020-11-08T11:10:17Z'
+      imageID: >-
+        image-registry.openshift-image-registry.svc:5000/sandeepv-sg-console/console@sha256:6105f16d16901e1ba5c88d1cb1d06aca574a79308eab27eb47a617e620e719b7
+      image: >-
+        image-registry.openshift-image-registry.svc:5000/sandeepv-sg-console/console@sha256:6105f16d16901e1ba5c88d1cb1d06aca574a79308eab27eb47a617e620e719b7
+      lastState: {}
+      containerID: 'cri-o://585e643c094048b9dfeca2ec8fc75efc230263dc926116f54e872e989285e623'
+  qosClass: Burstable

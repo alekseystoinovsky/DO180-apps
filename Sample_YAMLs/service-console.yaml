@@ -1,0 +1,82 @@
+﻿kind: Service
+apiVersion: v1
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: console
+    app.openshift.io/vcs-uri: 'https://github.com/sandeepved/DO180-apps.git'
+    openshift.io/generated-by: OpenShiftWebConsole
+  selfLink: /api/v1/namespaces/sandeepv-sg-console/services/console
+  resourceVersion: '2716887'
+  name: console
+  uid: 7b964a02-0c89-4cb8-abf8-976c775b6c93
+  creationTimestamp: '2020-11-08T11:09:34Z'
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: v1
+      time: '2020-11-08T11:09:34Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:app.openshift.io/vcs-ref': {}
+            'f:app.openshift.io/vcs-uri': {}
+            'f:openshift.io/generated-by': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:app.kubernetes.io/component': {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/name': {}
+            'f:app.kubernetes.io/part-of': {}
+            'f:app.openshift.io/runtime': {}
+            'f:app.openshift.io/runtime-version': {}
+        'f:spec':
+          'f:ports':
+            .: {}
+            'k:{"port":8080,"protocol":"TCP"}':
+              .: {}
+              'f:name': {}
+              'f:port': {}
+              'f:protocol': {}
+              'f:targetPort': {}
+            'k:{"port":8443,"protocol":"TCP"}':
+              .: {}
+              'f:name': {}
+              'f:port': {}
+              'f:protocol': {}
+              'f:targetPort': {}
+          'f:selector':
+            .: {}
+            'f:app': {}
+            'f:deploymentconfig': {}
+          'f:sessionAffinity': {}
+          'f:type': {}
+  namespace: sandeepv-sg-console
+  labels:
+    app: console
+    app.kubernetes.io/component: console
+    app.kubernetes.io/instance: console
+    app.kubernetes.io/name: php
+    app.kubernetes.io/part-of: php-helloworld
+    app.openshift.io/runtime: php
+    app.openshift.io/runtime-version: '7.3'
+spec:
+  ports:
+    - name: 8080-tcp
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+    - name: 8443-tcp
+      protocol: TCP
+      port: 8443
+      targetPort: 8443
+  selector:
+    app: console
+    deploymentconfig: console
+  clusterIP: 172.30.17.149
+  type: ClusterIP
+  sessionAffinity: None
+status:
+  loadBalancer: {}

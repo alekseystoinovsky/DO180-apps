@@ -1,0 +1,136 @@
+﻿kind: Build
+apiVersion: build.openshift.io/v1
+metadata:
+  annotations:
+    openshift.io/build-config.name: console
+    openshift.io/build.number: '1'
+    openshift.io/build.pod-name: console-1-build
+  selfLink: /apis/build.openshift.io/v1/namespaces/sandeepv-sg-console/builds/console-1
+  resourceVersion: '2717120'
+  name: console-1
+  uid: b4c13e34-3957-407a-a392-3d64d613b1ab
+  creationTimestamp: '2020-11-08T11:09:35Z'
+  namespace: sandeepv-sg-console
+  ownerReferences:
+    - apiVersion: build.openshift.io/v1
+      kind: BuildConfig
+      name: console
+      uid: 6b4b3e68-7a76-4ba1-9dcd-00ecb357f7e2
+      controller: true
+  labels:
+    app: console
+    app.kubernetes.io/part-of: php-helloworld
+    app.kubernetes.io/instance: console
+    openshift.io/build-config.name: console
+    app.kubernetes.io/component: console
+    openshift.io/build.start-policy: Serial
+    buildconfig: console
+    app.openshift.io/runtime: php
+    app.kubernetes.io/name: php
+    app.openshift.io/runtime-version: '7.3'
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'console:latest'
+    pushSecret:
+      name: builder-dockercfg-f6f2w
+  resources: {}
+  triggeredBy:
+    - message: Image change
+      imageChangeBuild:
+        imageID: >-
+          image-registry.openshift-image-registry.svc:5000/openshift/php@sha256:9bb7d5af155a162865ed10e33ea194f966b94974ce4cd6476f5fc26e5d2d8ff8
+        fromRef:
+          kind: ImageStreamTag
+          namespace: openshift
+          name: 'php:7.3'
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: DockerImage
+        name: >-
+          image-registry.openshift-image-registry.svc:5000/openshift/php@sha256:9bb7d5af155a162865ed10e33ea194f966b94974ce4cd6476f5fc26e5d2d8ff8
+      pullSecret:
+        name: builder-dockercfg-f6f2w
+  postCommit: {}
+  serviceAccount: builder
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/sandeepved/DO180-apps.git'
+      ref: console
+    contextDir: php-helloworld
+  revision:
+    type: Git
+    git:
+      commit: f7cd8963ef353d9173c3a21dcccf402f3616840b
+      author:
+        name: Jordi Sola
+        email: someth2say@gmail.com
+      committer:
+        name: Jordi Sola
+        email: someth2say@gmail.com
+      message: 'Initial commit, including all apps previously in course'
+status:
+  output:
+    to:
+      imageDigest: 'sha256:6105f16d16901e1ba5c88d1cb1d06aca574a79308eab27eb47a617e620e719b7'
+  config:
+    kind: BuildConfig
+    namespace: sandeepv-sg-console
+    name: console
+  outputDockerImageReference: >-
+    image-registry.openshift-image-registry.svc:5000/sandeepv-sg-console/console:latest
+  duration: 36000000000
+  startTimestamp: '2020-11-08T11:09:35Z'
+  stages:
+    - name: FetchInputs
+      startTime: '2020-11-08T11:09:43Z'
+      durationMilliseconds: 2210
+      steps:
+        - name: FetchGitSource
+          startTime: '2020-11-08T11:09:43Z'
+          durationMilliseconds: 2210
+    - name: PullImages
+      startTime: '2020-11-08T11:09:48Z'
+      durationMilliseconds: 18143
+      steps:
+        - name: PullBaseImage
+          startTime: '2020-11-08T11:09:48Z'
+          durationMilliseconds: 18143
+    - name: Build
+      startTime: '2020-11-08T11:10:07Z'
+      durationMilliseconds: 4083
+      steps:
+        - name: DockerBuild
+          startTime: '2020-11-08T11:10:07Z'
+          durationMilliseconds: 4083
+    - name: PushImage
+      startTime: '2020-11-08T11:10:11Z'
+      durationMilliseconds: 299
+      steps:
+        - name: PushImage
+          startTime: '2020-11-08T11:10:11Z'
+          durationMilliseconds: 299
+  conditions:
+    - type: New
+      status: 'False'
+      lastUpdateTime: '2020-11-08T11:09:35Z'
+      lastTransitionTime: '2020-11-08T11:09:35Z'
+    - type: Pending
+      status: 'False'
+      lastUpdateTime: '2020-11-08T11:09:38Z'
+      lastTransitionTime: '2020-11-08T11:09:38Z'
+    - type: Running
+      status: 'False'
+      lastUpdateTime: '2020-11-08T11:10:11Z'
+      lastTransitionTime: '2020-11-08T11:10:11Z'
+    - type: Complete
+      status: 'True'
+      lastUpdateTime: '2020-11-08T11:10:11Z'
+      lastTransitionTime: '2020-11-08T11:10:11Z'
+  completionTimestamp: '2020-11-08T11:10:11Z'
+  phase: Complete

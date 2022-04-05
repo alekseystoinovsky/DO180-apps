@@ -1,0 +1,181 @@
+﻿kind: ReplicationController
+apiVersion: v1
+metadata:
+  annotations:
+    openshift.io/deployment-config.name: console
+    openshift.io/deployer-pod.completed-at: '2020-11-08 11:10:17 +0000 UTC'
+    openshift.io/deployment.phase: Complete
+    openshift.io/deployer-pod.created-at: '2020-11-08 11:10:12 +0000 UTC'
+    openshift.io/deployment-config.latest-version: '1'
+    openshift.io/deployment.status-reason: config change
+    openshift.io/deployment.replicas: '1'
+    openshift.io/encoded-deployment-config: >
+      {"kind":"DeploymentConfig","apiVersion":"apps.openshift.io/v1","metadata":{"name":"console","namespace":"sandeepv-sg-console","selfLink":"/apis/apps.openshift.io/v1/namespaces/sandeepv-sg-console/deploymentconfigs/console","uid":"852683aa-b20e-46d8-b886-8579df7a10c1","resourceVersion":"2717123","generation":2,"creationTimestamp":"2020-11-08T11:09:34Z","labels":{"app":"console","app.kubernetes.io/component":"console","app.kubernetes.io/instance":"console","app.kubernetes.io/name":"php","app.kubernetes.io/part-of":"php-helloworld","app.openshift.io/runtime":"php","app.openshift.io/runtime-version":"7.3"},"annotations":{"app.openshift.io/vcs-ref":"console","app.openshift.io/vcs-uri":"https://github.com/sandeepved/DO180-apps.git","openshift.io/generated-by":"OpenShiftWebConsole"},"managedFields":[{"manager":"Mozilla","operation":"Update","apiVersion":"apps.openshift.io/v1","time":"2020-11-08T11:09:34Z","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:annotations":{".":{},"f:app.openshift.io/vcs-ref":{},"f:app.openshift.io/vcs-uri":{},"f:openshift.io/generated-by":{}},"f:labels":{".":{},"f:app":{},"f:app.kubernetes.io/component":{},"f:app.kubernetes.io/instance":{},"f:app.kubernetes.io/name":{},"f:app.kubernetes.io/part-of":{},"f:app.openshift.io/runtime":{},"f:app.openshift.io/runtime-version":{}}},"f:spec":{"f:replicas":{},"f:selector":{".":{},"f:app":{},"f:deploymentconfig":{}},"f:strategy":{"f:activeDeadlineSeconds":{},"f:rollingParams":{".":{},"f:intervalSeconds":{},"f:maxSurge":{},"f:maxUnavailable":{},"f:timeoutSeconds":{},"f:updatePeriodSeconds":{}},"f:type":{}},"f:template":{".":{},"f:metadata":{".":{},"f:creationTimestamp":{},"f:labels":{".":{},"f:app":{},"f:deploymentconfig":{}}},"f:spec":{".":{},"f:containers":{".":{},"k:{\"name\":\"console\"}":{".":{},"f:imagePullPolicy":{},"f:name":{},"f:ports":{".":{},"k:{\"containerPort\":8080,\"protocol\":\"TCP\"}":{".":{},"f:containerPort":{},"f:protocol":{}},"k:{\"containerPort\":8443,\"protocol\":\"TCP\"}":{".":{},"f:containerPort":{},"f:protocol":{}}},"f:resources":{},"f:terminationMessagePath":{},"f:terminationMessagePolicy":{}}},"f:dnsPolicy":{},"f:restartPolicy":{},"f:schedulerName":{},"f:securityContext":{},"f:terminationGracePeriodSeconds":{}}}}}},{"manager":"openshift-controller-manager","operation":"Update","apiVersion":"apps.openshift.io/v1","time":"2020-11-08T11:10:11Z","fieldsType":"FieldsV1","fieldsV1":{"f:spec":{"f:template":{"f:spec":{"f:containers":{"k:{\"name\":\"console\"}":{"f:image":{}}}}},"f:triggers":{}},"f:status":{"f:conditions":{".":{},"k:{\"type\":\"Available\"}":{".":{},"f:lastTransitionTime":{},"f:lastUpdateTime":{},"f:message":{},"f:status":{},"f:type":{}}},"f:details":{".":{},"f:causes":{},"f:message":{}},"f:latestVersion":{},"f:observedGeneration":{}}}}]},"spec":{"strategy":{"type":"Rolling","rollingParams":{"updatePeriodSeconds":1,"intervalSeconds":1,"timeoutSeconds":600,"maxUnavailable":"25%","maxSurge":"25%"},"resources":{},"activeDeadlineSeconds":21600},"triggers":[{"type":"ImageChange","imageChangeParams":{"automatic":true,"containerNames":["console"],"from":{"kind":"ImageStreamTag","namespace":"sandeepv-sg-console","name":"console:latest"},"lastTriggeredImage":"image-registry.openshift-image-registry.svc:5000/sandeepv-sg-console/console@sha256:6105f16d16901e1ba5c88d1cb1d06aca574a79308eab27eb47a617e620e719b7"}},{"type":"ConfigChange"}],"replicas":1,"revisionHistoryLimit":10,"test":false,"selector":{"app":"console","deploymentconfig":"console"},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"console","deploymentconfig":"console"}},"spec":{"containers":[{"name":"console","image":"image-registry.openshift-image-registry.svc:5000/sandeepv-sg-console/console@sha256:6105f16d16901e1ba5c88d1cb1d06aca574a79308eab27eb47a617e620e719b7","ports":[{"containerPort":8080,"protocol":"TCP"},{"containerPort":8443,"protocol":"TCP"}],"resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","imagePullPolicy":"Always"}],"restartPolicy":"Always","terminationGracePeriodSeconds":30,"dnsPolicy":"ClusterFirst","securityContext":{},"schedulerName":"default-scheduler"}}},"status":{"latestVersion":1,"observedGeneration":1,"replicas":0,"updatedReplicas":0,"availableReplicas":0,"unavailableReplicas":0,"details":{"message":"config
+      change","causes":[{"type":"ConfigChange"}]},"conditions":[{"type":"Available","status":"False","lastUpdateTime":"2020-11-08T11:09:34Z","lastTransitionTime":"2020-11-08T11:09:34Z","message":"Deployment
+      config does not have minimum availability."}]}}
+    openshift.io/deployer-pod.name: console-1-deploy
+  selfLink: /api/v1/namespaces/sandeepv-sg-console/replicationcontrollers/console-1
+  resourceVersion: '2717198'
+  name: console-1
+  uid: 171f1565-3c2b-4604-a490-e52241be08f0
+  creationTimestamp: '2020-11-08T11:10:12Z'
+  generation: 2
+  managedFields:
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2020-11-08T11:10:17Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:availableReplicas': {}
+          'f:fullyLabeledReplicas': {}
+          'f:observedGeneration': {}
+          'f:readyReplicas': {}
+          'f:replicas': {}
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2020-11-08T11:10:18Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:openshift.io/deployment.replicas': {}
+            'f:openshift.io/encoded-deployment-config': {}
+            .: {}
+            'f:openshift.io/deployment-config.name': {}
+            'f:openshift.io/deployer-pod.name': {}
+            'f:openshift.io/deployment.phase': {}
+            'f:openshift.io/deployment-config.latest-version': {}
+            'f:openshift.io/deployment.status-reason': {}
+            'f:openshift.io/deployer-pod.completed-at': {}
+            'f:openshift.io/deployer-pod.created-at': {}
+          'f:labels':
+            'f:app.openshift.io/runtime': {}
+            'f:app': {}
+            'f:app.kubernetes.io/name': {}
+            .: {}
+            'f:openshift.io/deployment-config.name': {}
+            'f:app.kubernetes.io/part-of': {}
+            'f:app.openshift.io/runtime-version': {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/component': {}
+          'f:ownerReferences':
+            .: {}
+            'k:{"uid":"852683aa-b20e-46d8-b886-8579df7a10c1"}':
+              .: {}
+              'f:apiVersion': {}
+              'f:blockOwnerDeletion': {}
+              'f:controller': {}
+              'f:kind': {}
+              'f:name': {}
+              'f:uid': {}
+        'f:spec':
+          'f:replicas': {}
+          'f:selector':
+            .: {}
+            'f:app': {}
+            'f:deployment': {}
+            'f:deploymentconfig': {}
+          'f:template':
+            .: {}
+            'f:metadata':
+              .: {}
+              'f:annotations':
+                .: {}
+                'f:openshift.io/deployment-config.latest-version': {}
+                'f:openshift.io/deployment-config.name': {}
+                'f:openshift.io/deployment.name': {}
+              'f:creationTimestamp': {}
+              'f:labels':
+                .: {}
+                'f:app': {}
+                'f:deployment': {}
+                'f:deploymentconfig': {}
+            'f:spec':
+              .: {}
+              'f:containers':
+                .: {}
+                'k:{"name":"console"}':
+                  .: {}
+                  'f:image': {}
+                  'f:imagePullPolicy': {}
+                  'f:name': {}
+                  'f:ports':
+                    .: {}
+                    'k:{"containerPort":8080,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:protocol': {}
+                    'k:{"containerPort":8443,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:protocol': {}
+                  'f:resources': {}
+                  'f:terminationMessagePath': {}
+                  'f:terminationMessagePolicy': {}
+              'f:dnsPolicy': {}
+              'f:restartPolicy': {}
+              'f:schedulerName': {}
+              'f:securityContext': {}
+              'f:terminationGracePeriodSeconds': {}
+  namespace: sandeepv-sg-console
+  ownerReferences:
+    - apiVersion: apps.openshift.io/v1
+      kind: DeploymentConfig
+      name: console
+      uid: 852683aa-b20e-46d8-b886-8579df7a10c1
+      controller: true
+      blockOwnerDeletion: true
+  labels:
+    app: console
+    app.kubernetes.io/component: console
+    app.kubernetes.io/instance: console
+    app.kubernetes.io/name: php
+    app.kubernetes.io/part-of: php-helloworld
+    app.openshift.io/runtime: php
+    app.openshift.io/runtime-version: '7.3'
+    openshift.io/deployment-config.name: console
+spec:
+  replicas: 1
+  selector:
+    app: console
+    deployment: console-1
+    deploymentconfig: console
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: console
+        deployment: console-1
+        deploymentconfig: console
+      annotations:
+        openshift.io/deployment-config.latest-version: '1'
+        openshift.io/deployment-config.name: console
+        openshift.io/deployment.name: console-1
+    spec:
+      containers:
+        - name: console
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/sandeepv-sg-console/console@sha256:6105f16d16901e1ba5c88d1cb1d06aca574a79308eab27eb47a617e620e719b7
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8443
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+status:
+  replicas: 1
+  fullyLabeledReplicas: 1
+  readyReplicas: 1
+  availableReplicas: 1
+  observedGeneration: 2
