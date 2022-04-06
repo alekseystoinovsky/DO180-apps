@@ -1,0 +1,465 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/network-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.217.1.143"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      k8s.v1.cni.cncf.io/networks-status: |-
+        [{
+            "name": "openshift-sdn",
+            "interface": "eth0",
+            "ips": [
+                "10.217.1.143"
+            ],
+            "default": true,
+            "dns": {}
+        }]
+      openshift.io/generated-by: OpenShiftNewApp
+      openshift.io/scc: restricted
+    creationTimestamp: "2022-04-05T18:31:02Z"
+    generateName: newnginx-669f85c899-
+    labels:
+      deployment: newnginx
+      pod-template-hash: 669f85c899
+    name: newnginx-669f85c899-cxd5x
+    namespace: console
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: newnginx-669f85c899
+      uid: ac8a90cc-8c26-4533-bb5b-85391ae2f8b6
+    resourceVersion: "399247"
+    uid: 9eb13a2c-4e68-4a71-850d-465a3265b434
+  spec:
+    containers:
+    - image: quay.io/bitnami/nginx@sha256:c47177a478f85b4ba5026607c910a82ad3abe2adbd411617c4eab3f0f77eba00
+      imagePullPolicy: IfNotPresent
+      name: newnginx
+      ports:
+      - containerPort: 8080
+        protocol: TCP
+      - containerPort: 8443
+        protocol: TCP
+      resources: {}
+      securityContext:
+        capabilities:
+          drop:
+          - KILL
+          - MKNOD
+          - SETGID
+          - SETUID
+        runAsUser: 1000690000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-8t5mz
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: default-dockercfg-ks5fx
+    nodeName: crc-jw57j-master-0
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000690000
+      seLinuxOptions:
+        level: s0:c26,c20
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-8t5mz
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+        - configMap:
+            items:
+            - key: service-ca.crt
+              path: service-ca.crt
+            name: openshift-service-ca.crt
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2022-04-05T18:31:03Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2022-04-05T18:31:06Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2022-04-05T18:31:06Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2022-04-05T18:31:03Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://359cbbede5b2f3d517518af6e539a4ec1afb588c5e37788582322223829bc2eb
+      image: quay.io/bitnami/nginx@sha256:c47177a478f85b4ba5026607c910a82ad3abe2adbd411617c4eab3f0f77eba00
+      imageID: docker.io/bitnami/nginx@sha256:c47177a478f85b4ba5026607c910a82ad3abe2adbd411617c4eab3f0f77eba00
+      lastState: {}
+      name: newnginx
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2022-04-05T18:31:06Z"
+    hostIP: 192.168.126.11
+    phase: Running
+    podIP: 10.217.1.143
+    podIPs:
+    - ip: 10.217.1.143
+    qosClass: BestEffort
+    startTime: "2022-04-05T18:31:03Z"
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2022-04-05T18:31:01Z"
+    labels:
+      app: newnginx
+      app.kubernetes.io/component: newnginx
+      app.kubernetes.io/instance: newnginx
+    name: newnginx
+    namespace: console
+    resourceVersion: "399187"
+    uid: be2c300a-28aa-457f-bd6f-5f20da78daf3
+  spec:
+    clusterIP: 10.217.5.224
+    clusterIPs:
+    - 10.217.5.224
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: 8443-tcp
+      port: 8443
+      protocol: TCP
+      targetPort: 8443
+    selector:
+      deployment: newnginx
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"newnginx:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"newnginx\")].image"}]'
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2022-04-05T18:31:01Z"
+    generation: 2
+    labels:
+      app: newnginx
+      app.kubernetes.io/component: newnginx
+      app.kubernetes.io/instance: newnginx
+    name: newnginx
+    namespace: console
+    resourceVersion: "399255"
+    uid: b57f7439-c32d-4ac9-8858-f7f1f3730bf2
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        deployment: newnginx
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          deployment: newnginx
+      spec:
+        containers:
+        - image: quay.io/bitnami/nginx@sha256:c47177a478f85b4ba5026607c910a82ad3abe2adbd411617c4eab3f0f77eba00
+          imagePullPolicy: IfNotPresent
+          name: newnginx
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 8443
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2022-04-05T18:31:06Z"
+      lastUpdateTime: "2022-04-05T18:31:06Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2022-04-05T18:31:02Z"
+      lastUpdateTime: "2022-04-05T18:31:06Z"
+      message: ReplicaSet "newnginx-669f85c899" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "2"
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"newnginx:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"newnginx\")].image"}]'
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2022-04-05T18:31:02Z"
+    generation: 1
+    labels:
+      deployment: newnginx
+      pod-template-hash: 669f85c899
+    name: newnginx-669f85c899
+    namespace: console
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: newnginx
+      uid: b57f7439-c32d-4ac9-8858-f7f1f3730bf2
+    resourceVersion: "399248"
+    uid: ac8a90cc-8c26-4533-bb5b-85391ae2f8b6
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        deployment: newnginx
+        pod-template-hash: 669f85c899
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          deployment: newnginx
+          pod-template-hash: 669f85c899
+      spec:
+        containers:
+        - image: quay.io/bitnami/nginx@sha256:c47177a478f85b4ba5026607c910a82ad3abe2adbd411617c4eab3f0f77eba00
+          imagePullPolicy: IfNotPresent
+          name: newnginx
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 8443
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"newnginx:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"newnginx\")].image"}]'
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: "2022-04-05T18:31:02Z"
+    generation: 2
+    labels:
+      deployment: newnginx
+      pod-template-hash: 7f87dc895d
+    name: newnginx-7f87dc895d
+    namespace: console
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: newnginx
+      uid: b57f7439-c32d-4ac9-8858-f7f1f3730bf2
+    resourceVersion: "399252"
+    uid: 3ccd34b1-4677-4b90-8e3e-31a6f9b569dd
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        deployment: newnginx
+        pod-template-hash: 7f87dc895d
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          deployment: newnginx
+          pod-template-hash: 7f87dc895d
+      spec:
+        containers:
+        - image: ' '
+          imagePullPolicy: IfNotPresent
+          name: newnginx
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 8443
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+      openshift.io/image.dockerRepositoryCheck: "2022-04-05T18:31:02Z"
+    creationTimestamp: "2022-04-05T18:31:01Z"
+    generation: 2
+    labels:
+      app: newnginx
+      app.kubernetes.io/component: newnginx
+      app.kubernetes.io/instance: newnginx
+    name: newnginx
+    namespace: console
+    resourceVersion: "399207"
+    uid: 2a21ed2f-a59b-4631-a374-d876ee175b14
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        openshift.io/imported-from: quay.io/bitnami/nginx
+      from:
+        kind: DockerImage
+        name: quay.io/bitnami/nginx
+      generation: 2
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: image-registry.openshift-image-registry.svc:5000/console/newnginx
+    publicDockerImageRepository: default-route-openshift-image-registry.apps-crc.testing/console/newnginx
+    tags:
+    - items:
+      - created: "2022-04-05T18:31:02Z"
+        dockerImageReference: quay.io/bitnami/nginx@sha256:c47177a478f85b4ba5026607c910a82ad3abe2adbd411617c4eab3f0f77eba00
+        generation: 2
+        image: sha256:c47177a478f85b4ba5026607c910a82ad3abe2adbd411617c4eab3f0f77eba00
+      tag: latest
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    creationTimestamp: "2022-04-05T18:31:59Z"
+    labels:
+      app: newnginx
+      app.kubernetes.io/component: newnginx
+      app.kubernetes.io/instance: newnginx
+    name: newnginx
+    namespace: console
+    resourceVersion: "399423"
+    uid: c5eef1db-0a42-4bf1-9fd7-4c79545dacf2
+  spec:
+    host: newnginx-console.apps-crc.testing
+    port:
+      targetPort: 8080-tcp
+    to:
+      kind: Service
+      name: newnginx
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: "2022-04-05T18:31:59Z"
+        status: "True"
+        type: Admitted
+      host: newnginx-console.apps-crc.testing
+      routerCanonicalHostname: router-default.apps-crc.testing
+      routerName: default
+      wildcardPolicy: None
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
